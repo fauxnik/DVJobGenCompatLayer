@@ -1,0 +1,9 @@
+{
+  "Releases": [
+    {
+      "Id": "JobGenCompatLayer",
+      "Version": "0.0.0",
+      "DownloadUrl": "https://github.com/fauxnik/JobGenCompatLayer/releases/download/v0.0.0/JobGenCompatLayer.zip"
+    }
+  ]
+}

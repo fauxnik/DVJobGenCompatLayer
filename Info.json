@@ -1,0 +1,10 @@
+{
+  "Id": "JobGenCompatLayer",
+  "DisplayName": "Job Generation Compatibility Layer",
+  "Author": "fauxnik",
+  "Version": "0.0.0",
+  "AssemblyName": "JobGenCompatLayer.dll",
+  "EntryMethod": "JobGenCompatLayer.Mod.OnLoad",
+  "LoadAfter": [],
+  "Repository": "https://raw.githubusercontent.com/fauxnik/JobGenCompatLayer/main/Repository.json"
+}
