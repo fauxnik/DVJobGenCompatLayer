@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobGenCompatLayer", "JobGenCompatLayer\JobGenCompatLayer.csproj", "{B1C3FC7A-BC6B-41F8-9017-C1F09F884CEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1C3FC7A-BC6B-41F8-9017-C1F09F884CEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C3FC7A-BC6B-41F8-9017-C1F09F884CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C3FC7A-BC6B-41F8-9017-C1F09F884CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C3FC7A-BC6B-41F8-9017-C1F09F884CEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CDBB91B6-437D-4E80-8135-79F334890F0E}
+	EndGlobalSection
+EndGlobal
