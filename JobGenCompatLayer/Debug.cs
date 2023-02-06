@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommandTerminal;
+using System;
 
 namespace JobGenCompatLayer
 {
@@ -62,6 +63,17 @@ namespace JobGenCompatLayer
             Mod.Entry.Logger.Critical($"This happened while {action}.");
             Mod.Entry.Logger.Critical($"You can reactivate {Mod.Entry.Info.Id} after restarting the game, but this failure type likely indicates an incompatibility between the mod and a recent game update. Please search the mod's Github issue tracker for a relevant report. If none is found, please open one. Include this log file and a detailed description of what you were doing when this error occurred.");
             UnityEngine.Application.Quit();
+        }
+
+        internal static class Commands
+        {
+            internal static void Register()
+            {
+                // TODO: register terminal commands
+                // Terminal.Shell.AddCommand("JGCL.CommandName", CommandMethod, min_args: 0, max_args: 0);
+            }
+
+            // private static void CommandMethod(CommandArg[] args) { }
         }
     }
 }

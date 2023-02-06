@@ -31,6 +31,9 @@ namespace JobGenCompatLayer
                 harmony.PatchAll(Assembly.GetExecutingAssembly());
             }
             catch (Exception ex) { Debug.OnCriticalFailure(ex, "patching miscellaneous assemblies"); }
+
+            try { Debug.Commands.Register(); }
+            catch (Exception ex) { Debug.LogWarning(() => $"Failed to register debug commands:\n{ex}"); }
         }
     }
 }
