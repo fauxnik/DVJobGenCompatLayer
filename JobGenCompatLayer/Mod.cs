@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HarmonyLib;
+using System;
+using System.Reflection;
 using UnityModManagerNet;
 
 namespace JobGenCompatLayer
@@ -7,6 +9,8 @@ namespace JobGenCompatLayer
     {
         public static UnityModManager.ModEntry Entry { get; private set; }
         public static Settings Settings { get; private set; }
+
+        private static Harmony harmony;
 
         static void OnLoad(UnityModManager.ModEntry loadedEntry)
         {
@@ -20,6 +24,13 @@ namespace JobGenCompatLayer
                 Debug.LogWarning(() => $"Using default mod settings. Saved settings failed to load:\n{ex}");
                 Settings = new Settings();
             }
+
+            try
+            {
+                harmony = new Harmony(Entry.Info.Id);
+                harmony.PatchAll(Assembly.GetExecutingAssembly());
+            }
+            catch (Exception ex) { Debug.OnCriticalFailure(ex, "patching miscellaneous assemblies"); }
         }
     }
 }
