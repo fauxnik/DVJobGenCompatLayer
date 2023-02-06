@@ -1,5 +1,6 @@
 ﻿using DV.Logic.Job;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace JobGenCompatLayer.Builders
@@ -83,6 +84,43 @@ namespace JobGenCompatLayer.Builders
             staticTransportJobDefinition.destinationTrack = inbound;
             staticTransportJobDefinition.forceCorrectCargoStateOnCars = true;
             return staticTransportJobDefinition;
+        }
+
+        public TransportDefinitionBuilder StartAt(StationController stationController, Track outboundTrack)
+        {
+            origin = stationController;
+            outbound = outboundTrack;
+            return this;
+        }
+
+        public TransportDefinitionBuilder EndAt(StationController stationController, Track inboundTrack)
+        {
+            destination = stationController;
+            inbound = inboundTrack;
+            return this;
+        }
+
+        public TransportDefinitionBuilder Couple(params TrainCarType[] carTypes)
+        {
+            this.carTypes = carTypes.ToList();
+            return this;
+        }
+
+        public TransportDefinitionBuilder Carrying(params CargoType[] cargoTypes)
+        {
+            this.cargoTypes = cargoTypes.ToList();
+            return this;
+        }
+
+        public TransportDefinitionBuilder OfQuantity(params float[] cargoAmounts)
+        {
+            this.cargoAmounts = cargoAmounts.ToList();
+            return this;
+        }
+
+        public TransportDefinitionBuilder Haul(IEnumerable<TrainCarType> carTypes, IEnumerable<CargoType> cargoTypes, IEnumerable<float> cargoAmounts)
+        {
+            return Couple(carTypes.ToArray()).Carrying(cargoTypes.ToArray()).OfQuantity(cargoAmounts.ToArray());
         }
     }
 }

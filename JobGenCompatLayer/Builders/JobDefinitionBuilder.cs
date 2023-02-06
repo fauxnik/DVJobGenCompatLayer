@@ -88,6 +88,7 @@ namespace JobGenCompatLayer.Builders
                 return warehouseData;
             }
 
+            // TODO: Need a way for RSO to hook into this method
             public static List<CarsPerTrack> GroupCarsByTrack(List<Car> spawnedCars, Dictionary<Track, List<int>> indicesPerTrack)
             {
                 var carsPerEndTrack = new List<CarsPerTrack>();

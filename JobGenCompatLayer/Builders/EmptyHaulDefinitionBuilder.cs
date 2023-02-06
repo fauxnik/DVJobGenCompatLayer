@@ -1,5 +1,6 @@
 ﻿using DV.Logic.Job;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace JobGenCompatLayer.Builders
@@ -74,6 +75,31 @@ namespace JobGenCompatLayer.Builders
             staticEmptyHaulJobDefinition.trainCarsToTransport = spawnedCars;
             staticEmptyHaulJobDefinition.destinationTrack = end;
             return staticEmptyHaulJobDefinition;
+        }
+
+        public EmptyHaulDefinitionBuilder StartAt(StationController stationController, Track storageTrack)
+        {
+            origin = stationController;
+            start = storageTrack;
+            return this;
+        }
+
+        public EmptyHaulDefinitionBuilder EndAt(StationController stationController, Track storageTrack)
+        {
+            destination = stationController;
+            end = storageTrack;
+            return this;
+        }
+
+        public EmptyHaulDefinitionBuilder Couple(params TrainCarType[] carTypes)
+        {
+            this.carTypes = carTypes.ToList();
+            return this;
+        }
+
+        public EmptyHaulDefinitionBuilder Haul(IEnumerable<TrainCarType> carTypes)
+        {
+            return Couple(carTypes.ToArray());
         }
     }
 }

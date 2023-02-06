@@ -82,21 +82,42 @@ namespace JobGenCompatLayer.Builders
             jobChainCreatorPerStartingJobType[jobType] = jobChainCreator;
         }
 
-        public void AddJobDefinitionBuilder(JobDefinitionBuilder jobDefinitionBuilder)
-        {
-            jobDefinitionBuilders.Add(jobDefinitionBuilder);
-        }
-
-        public void AddOriginStationController(StationController originStationController)
+        /**
+         * TODO: document public API method
+         */
+        public JobChainBuilder StartAt(StationController originStationController)
         {
             if (origin != null) { Debug.LogWarning(() => $"Overwriting already added origin station controller. Was: {origin.logicStation.ID} Now: {originStationController.logicStation.ID}"); }
             origin = originStationController;
+            return this;
         }
 
-        public void AddDestinationStationController(StationController destinationStationController)
+        /**
+         * TODO: document public API method
+         */
+        public JobChainBuilder EndAt(StationController destinationStationController)
         {
             if (destination != null) { Debug.LogWarning(() => $"Overwriting already added destination station controller. Was: {destination.logicStation.ID} Now: {destinationStationController.logicStation.ID}"); }
             destination = destinationStationController;
+            return this;
+        }
+
+        /**
+         * TODO: document public API method
+         */
+        public JobChainBuilder Then(JobDefinitionBuilder jobDefinitionBuilder)
+        {
+            jobDefinitionBuilders.Add(jobDefinitionBuilder);
+            return this;
+        }
+
+        /**
+         * TODO: document public API method
+         */
+        public JobChainBuilder DoJobs(IEnumerable<JobDefinitionBuilder> jobDefinitionBuilders)
+        {
+            this.jobDefinitionBuilders.AddRange(jobDefinitionBuilders);
+            return this;
         }
     }
 }

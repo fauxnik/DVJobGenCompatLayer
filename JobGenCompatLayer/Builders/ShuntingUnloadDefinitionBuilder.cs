@@ -98,5 +98,48 @@ namespace JobGenCompatLayer.Builders
             staticShuntingUnloadJobDefinition.forceCorrectCargoStateOnCars = true;
             return staticShuntingUnloadJobDefinition;
         }
+
+        public ShuntingUnloadDefinitionBuilder StartAt(StationController stationController, Track inboundTrack)
+        {
+            origin = stationController;
+            inbound = inboundTrack;
+            return this;
+        }
+
+        public ShuntingUnloadDefinitionBuilder Couple(params TrainCarType[] carTypes)
+        {
+            this.carTypes = carTypes.ToList();
+            return this;
+        }
+
+        public ShuntingUnloadDefinitionBuilder Unload(WarehouseMachine warehouseMachine, params CargoType[] cargoTypes)
+        {
+            warehouse = warehouseMachine;
+            this.cargoTypes = cargoTypes.ToList();
+            return this;
+        }
+
+        public ShuntingUnloadDefinitionBuilder OfQuantity(params float[] cargoAmounts)
+        {
+            this.cargoAmounts = cargoAmounts.ToList();
+            return this;
+        }
+
+        public ShuntingUnloadDefinitionBuilder EndAt(StationController stationController)
+        {
+            destination = stationController;
+            return this;
+        }
+
+        public ShuntingUnloadDefinitionBuilder OnTracks(Dictionary<Track, List<int>> indicesOfCarTypesPerEndTrack)
+        {
+            carTypeIndicesPerEndTrack = indicesOfCarTypesPerEndTrack;
+            return this;
+        }
+
+        public ShuntingUnloadDefinitionBuilder Shunt(IEnumerable<TrainCarType> carTypes, IEnumerable<CargoType> cargoTypes, IEnumerable<float> cargoAmounts, WarehouseMachine warehouseMachine)
+        {
+            return Couple(carTypes.ToArray()).Unload(warehouseMachine, cargoTypes.ToArray()).OfQuantity(cargoAmounts.ToArray());
+        }
     }
 }
